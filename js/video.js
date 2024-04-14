@@ -14,11 +14,17 @@ document.addEventListener('DOMContentLoaded', () => {
     video.autoplay = false; 
     video.loop = false; 
 
-    document.getElementById('play').addEventListener('click', function() {
-        video.play();
-        console.log('Volume:', video.volume * 100 + '%');
-    });
-
+	document.getElementById('play').addEventListener('click', function() {
+		video.play();
+		console.log('Volume:', video.volume * 100 + '%');
+		document.getElementById('volume').textContent = (video.volume * 100).toFixed(0) + '%';
+	});
+	var volumeSlider = document.getElementById('slider');
+volumeSlider.addEventListener('input', function() {
+    video.volume = this.value / 100;
+    console.log('Volume:', this.value + '%');
+    document.getElementById('volume').textContent = this.value + '%';
+});
 
     document.getElementById('pause').addEventListener('click', function() {
         video.pause();
